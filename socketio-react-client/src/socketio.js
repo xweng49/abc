@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 
 const SocketIOComponent = () => {
   useEffect(() => {
-    const socket = io('http://127.0.0.1:5000/camera', {transports: ['websocket']}); // Replace with your Flask-SocketIO server URL
+    const socket = io('http://127.0.0.1:3001/socketio', {transports: ['websocket']}); // Replace with your Flask-SocketIO server URL
 
     socket.on('connect', () => {
       console.log('Connected to Flask-SocketIO server');

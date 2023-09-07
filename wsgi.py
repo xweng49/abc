@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO, Namespace
 
 app = Flask(__name__)
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app, cors_allowed_origins="*", async_mode="eventlet")
 
 # Namespace for the app
 class AppNamespace(Namespace):
@@ -33,6 +33,6 @@ def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    socketio.on_namespace(AppNamespace('/camera'))  # Connect AppNamespace to '/app'
+    socketio.on_namespace(AppNamespace('/app'))  # Connect AppNamespace to '/app'
     socketio.on_namespace(SocketIONamespace('/socketio'))  # Connect SocketIONamespace to '/socketio'
-    socketio.run(app, debug=True, host='localhost', port=5000)
+    socketio.run(app, debug=True, host='localhost', port=3001)
